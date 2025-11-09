@@ -563,6 +563,9 @@ print(bool(0)) #Returns False
 print(bool(None)) #Returns False. by default, the bool() method returns True if the object is defined, and False if the object is not defined.
 print(bool(False)) #Returns False
 
+print(bool("Srinadh" <"Sriz"))
+#True - because capital letters have lower ASCII values than small letters. Also, it is compared character by character from left to right.
+
 #Most Values are True
 #Almost any value is evaluated to True if it has some sort of content.
 #Any string is True, except empty strings.
@@ -570,7 +573,7 @@ print(bool(False)) #Returns False
 #Any list, tuple, set, and dictionary are True, except empty ones.
 
 #Some values are False
-#In fact, there are not many values that evaluate to False.\
+#In fact, there are not many values that evaluate to False.
 
 #The following values are evaluated to False:
 #False
@@ -638,7 +641,7 @@ print(isinstance(x, float)) #Returns False
 print("Addition:", 10 + 5) #Addition
 print("Subtraction:", 10 - 5) #Subtraction
 print("Multiplication:", 10 * 5) #Multiplication
-print("Division:", 10 / 5) #Division
+print("Division:", 10 / 5) #Division - quotient when remainder is zero
 print("Modulus:", 10 % 3) #Modulus - Remainder of division
 print("Exponentiation:", 10 ** 2) #Exponentiation
 print("Floor Division:", 10 // 3) #Floor Division - Rounds the result down to the nearest whole number
@@ -675,13 +678,19 @@ print("x <<= 3:", x)
 print(x := 3) #Walrus operator - assigns values to variables as part of a larger expression
 
 """
+
+Bit operations are always performed at bit level, meaning that they operate on the binary representations of integers.
 x &= 3  → Bitwise AND assignment: sets x to the result of x & 3.
            Clears bits in x where 3 has 0s. Often used to mask specific bits.
+            Masking: A technique to isolate or clear specific bits in a binary number.
+            to get the unmasked number we need to perform an 'OR'(|) operation between the result of mask with a unique value called restore which can be calculated as 'A' and not B;
+            where A is the original number and B is the mask.
+            restore = A | (~B)
 
- x |= 3  → Bitwise OR assignment: sets x to the result of x | 3.
+x |= 3  → Bitwise OR assignment: sets x to the result of x | 3.
            Sets bits in x where 3 has 1s. Useful for enabling specific flags.
 x ^= 3  → Bitwise XOR assignment: sets x to the result of x ^ 3.
-           Flips the bits in x where 3 has 1s. Useful for toggling flags.
+           If the inputs are same, the result is 0 and when different, the result is 1. Useful for toggling flags.
 
 x >>= 3 → Right shift assignment: shifts bits of x right by 3 places.
            Effectively divides x by 8 (2^3), discarding lower bits.
@@ -692,7 +701,7 @@ x <<= 3 → Left shift assignment: shifts bits of x left by 3 places.
 """
 
 #Python Comparison Operators - Comparison operators are used to compare two values:
-print(10 == 9) #Equal
+print(10 == 9) #Not Equal
 print(10 != 9) #Not Equal
 print(10 > 9)  #Greater Than
 print(10 < 9)  #Less Than
@@ -711,7 +720,10 @@ print(not(10 > 9 or 5 > 10)) #not - Reverse the result, returns True if the resu
 #is not - Returns True if both variables are not the same object
 x = ["apple", "banana", "cherry"]
 y = ["apple", "banana", "cherry"]
-z = x
+z = x #Shallow copy - x and z point to the same object in memory
+w = x.copy() #x and y have the same content, but are different objects in memory. so, is a deep copy.
+#check address of each variable
+print(id(x))
 print(x is z) #is - Returns True if both variables are the same object
 print(x is y) #is - Returns False if both variables are not the same object
 print(x == y) #== - Returns True if the values of both variables are equal
@@ -729,7 +741,9 @@ print("pineapple" not in x) #not in - Returns True if a sequence with the specif
 #Python Bitwise Operators - Bitwise operators are used to compare (binary) numbers:
 print(10 & 3) #AND - Sets each bit to 1 if both bits are 1
 print(10 | 3) #OR - Sets each bit to 1 if one of two bits is 1
-print(10 ^ 3) #XOR - Sets each bit to 1 if only one of two bits is 1
+print(10 ^ 3) #XOR - Sets each bit to 1 if only one of two bits is 1. If both bits are 0 or both are 1, the result is 0.
+## Bitwise XOR can be used as a simple encryption method. By applying XOR with a key, data can be encrypted and decrypted.
+#For example, to encrypt a message, you can XOR each character's ASCII value with a key. To decrypt, you simply XOR the encrypted value with the same key again.
 print(~10) #NOT - Inverts all the bits
 print(10 << 3) #Zero fill left shift - Shift left by pushing zeros in from the right and let the leftmost bits fall off
 print(10 >> 3) #Signed right shift - Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
@@ -744,7 +758,7 @@ print(10 >> 3) #Signed right shift - Shift right by pushing copies of the leftmo
 #Operator	Description
 #()	Parentheses
 #**	Exponentiation
-#+x, -x	Unary plus and minus, and bitwise NOT
+#+x, -x	Unary plus and minus, and bitwise NOT (~)
 #*, /, //, %	Multiplication, division, floor division, and modulus
 #+, -	Addition and subtraction
 #<<, >>	Bitwise left and right shift operators
