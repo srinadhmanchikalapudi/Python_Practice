@@ -323,6 +323,9 @@ print(txt)
 
 #all ASCII value maps to characters - https://www.ascii-code.com/
 
+#ASCII value for 'A' is 65
+print(ord('A')) #ord() function returns the ASCII value of a character
+
 #Binary format - 00000101 is calculated by 2 powers - 2^2(3rd position from right) + 2^0(1st position from right) = 4 + 1 = 5.
 
 txt = f"The binary version of 5 is {5 :b}" #Binary format
@@ -817,10 +820,12 @@ List is a collection which is ordered and changeable. Allows duplicate members.
 Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
 Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
 Dictionary is a collection which is ordered** and changeable. No duplicate members.
- 
+
+Sets and Tuples are faster than lists. If you have a collection of data that does not need to be changed, consider using Python Tuples.
+
 Python Tuples
-Well organized and easy to understand Web building tutorials with lots of examples of how to use HTML, CSS, JavaScript, SQL, Python, PHP, Bootstrap, Java, XML and more.
- 
+Well organized and easy to understand.
+
 *Set items are unchangeable, but you can remove and/or add items whenever you like.
 **As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
 
@@ -851,16 +856,15 @@ thislist = ["apple", "banana", "cherry"]
 thislist.insert(2, "watermelon")
 print(thislist)
 Python List insert() Method
-Well organized and easy to understand Web building tutorials with lots of examples of how to use HTML, CSS, JavaScript, SQL, Python, PHP, Bootstrap, Java, XML and more.
 The insert() method inserts the specified value at the specified position.
 
 """
-# is list in built data type in python
+# is list built in data type in python
 mylist = ["apple", "banana", "cherry"]
 
 print(type(mylist)) #Print the data type of the list
 
-#lists can store any data types in a single object.
+#lists can store several data types in a single object.
 
 mylist = ["apple", 1, True, 3.14]
 print(mylist)  
@@ -895,10 +899,22 @@ print(mylist)
 #Add Items
 mylist.append("orange") #Adds "orange" at the end of the list, and takes only one argument, but we can append another list as an item. Matter of fact adds any one object.
 print(mylist)
+"""
+>>> mylist.append(["orr","ddd"])     
+>>> mylist
+['apple', 1, True, 3.14, ['orr', 'ddd']]
+"""
 mylist.extend(["mango", "grapes"]) #Adds multiple items to the end of the list, even though we are adding a list, it adds each item individually
 print(mylist)
+"""
+>>> mylist.extend("mango")           
+>>> mylist
+['apple', 1, True, 3.14, ['orr', 'ddd'], 'm', 'a', 'n', 'g', 'o']
+"""
 #You can also use the list() constructor to make a list.
-thislist = list(("apple", "banana", "cherry")) #Note the double round-brackets
+thislist = list(("apple", "banana", "cherry")) #We can pass any iterable object (tuples, sets, etc.) to the list() constructor to make a list.
+print(thislist)
+thislist = list({"apple", "banana", "cherry"}) #set
 print(thislist)
 #Remove Items
 mylist.remove("banana") #Removes first occurance of "banana" from the list
@@ -948,10 +964,6 @@ thislist = ["banana", "Orange", "Kiwi", "cherry"]
 thislist.sort(key = str.lower)
 print(thislist)
 
-thislist = ["banana", "Orange", "Kiwi", "cherry"]
-thislist.sort(key = str.lower)
-print(thislist)
-
 def myfunc(n):
   return abs(n - 50)
 
@@ -964,13 +976,62 @@ thislist = ["banana", "Orange", "Kiwi", "cherry"]
 thislist.reverse()
 print(thislist)
 
+#Shallow copy - creates a new reference to the original list =
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist
+print(mylist)
+mylist.append("orange")
+print("Original List:", thislist)
+print("Copied List:", mylist)
+#Copy a List - Deep copy
+#You cannot copy a list simply by typing list2 = list1, because: list2 will only be a reference to list1, and changes made in list1 will automatically also be made in list2.
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist.copy()
+print(mylist)
+mylist.append("orange")
+print("Original List:", thislist)
+print("Copied List:", mylist)
 
+#Use the list() method - Deep copy
+#Another way to make a copy is to use the built-in method list().
+thislist = ["apple", "banana", "cherry"]
+mylist = list(thislist)
+print(mylist)
+mylist.append("orange")
+print("Original List:", thislist)
+print("Copied List:", mylist)
 
+# Use the slice Operator - Deep copy
+# You can also make a copy of a list by using the : (slice) operator.
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist[:]
+print(mylist)
+mylist.append("orange")
+print("Original List:", thislist)
+print("Copied List:", mylist)
+
+"""
+Python List methods
+Method	Description
+append()	Adds an element at the end of the list
+clear()	Removes all the elements from the list
+copy()	Returns a copy of the list
+count()	Returns the number of elements with the specified value
+extend()	Add the elements of a list (or any iterable), to the end of the current list
+index()	Returns the index of the first element with the specified value
+insert()	Adds an element at the specified position
+pop()	Removes the element at the specified position
+remove()	Removes the item with the specified value
+reverse()	Reverses the order of the list
+sort()	Sorts the list
+
+"""
 
 """
 Dictionary in  Python
 Dictionaries are used to store data values in key:value pairs. 
-"""
+Disctionaries are ordered, changeable, and do not allow duplicates.
+Keys are unique within a dictionary while values may not be.
 
 c = list({'baka':1, 'baka2': 2 })
 c
@@ -983,4 +1044,55 @@ c
 ['baka', 'baka2']
 c = list({'baka':1, 'baka2': 2 }.items())
 c
-[('baka', 1), ('baka2', 2)]
+[('baka', 1), ('baka2', 2)] #List of tuples
+
+
+"""
+
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+print(thisdict)
+
+#Duplicate values will overwrite existing values:
+
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964,
+  "year": 2020
+}
+print(thisdict) #o/p - year: 2020
+
+print(thisdict["brand"]) #Accessing Items
+print(thisdict.get("model")) #Accessing Items
+thisdict["year"] = 2020 #Changing Values
+print(thisdict)
+thisdict["color"] = "red" #Adding Items
+print(thisdict)
+thisdict.pop("model") #Removing Items
+print(thisdict)
+del thisdict["year"] #Removing Items
+print(thisdict)
+thisdict.clear() #Removing All Items
+print(thisdict)
+print("\n") #New Line
+
+#Dictionary Methods
+#Python has a set of built-in methods that you can use on dictionaries.
+#Method	Description
+#clear()	Removes all the elements from the dictionary
+#copy()	Returns a copy of the dictionary
+#fromkeys()	Returns a dictionary with the specified keys and value
+#get()	Returns the value of the specified key
+#items()	Returns a list containing a tuple for each key value pair
+#keys()	Returns a list containing the dictionary's keys
+#pop()	Removes the element with the specified key
+#popitem()	Removes the last inserted key-value pair
+#setdefault()	Returns the value of the specified key. If the key does not exist: insert the key, with the specified value
+#update()	Updates the dictionary with the specified key-value pairs
+#values()	Returns a list of all the values in the dictionary
+
+
