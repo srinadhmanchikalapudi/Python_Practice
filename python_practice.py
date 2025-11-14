@@ -806,3 +806,181 @@ print(list1)
 print(list2)
 print(list3)
 print(list4)
+
+
+"""
+Lists - Lists are ordered, changeable (Mutable), and allow duplicate values.
+
+Python Collections (Arrays)
+There are four collection data types in the Python programming language:
+List is a collection which is ordered and changeable. Allows duplicate members.
+Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+Dictionary is a collection which is ordered** and changeable. No duplicate members.
+ 
+Python Tuples
+Well organized and easy to understand Web building tutorials with lots of examples of how to use HTML, CSS, JavaScript, SQL, Python, PHP, Bootstrap, Java, XML and more.
+ 
+*Set items are unchangeable, but you can remove and/or add items whenever you like.
+**As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+
+Change a Range of Item Values
+To change the value of items within a specific range, define a list with the new values, and refer to the range of index numbers where you want to insert the new values:
+Example
+Change the values "banana" and "cherry" with the values "blackcurrant" and "watermelon":
+thislist = ["apple", "banana", "cherry", "orange", "kiwi", "mango"]
+
+thislist[1:3] = ["blackcurrant", "watermelon"]
+print(thislist)
+ 
+If you insert more items than you replace, the new items will be inserted where you specified, and the remaining items will move accordingly:
+Example
+Change the second value by replacing it with two new values:
+thislist = ["apple", "banana", "cherry"]
+
+thislist[1:2] = ["blackcurrant", "watermelon"]
+print(thislist)
+ 
+Insert Items
+To insert a new list item, without replacing any of the existing values, we can use the insert() method.
+The insert() method inserts an item at the specified index:
+Example
+Insert "watermelon" as the third item:
+thislist = ["apple", "banana", "cherry"]
+
+thislist.insert(2, "watermelon")
+print(thislist)
+Python List insert() Method
+Well organized and easy to understand Web building tutorials with lots of examples of how to use HTML, CSS, JavaScript, SQL, Python, PHP, Bootstrap, Java, XML and more.
+The insert() method inserts the specified value at the specified position.
+
+"""
+# is list in built data type in python
+mylist = ["apple", "banana", "cherry"]
+
+print(type(mylist)) #Print the data type of the list
+
+#lists can store any data types in a single object.
+
+mylist = ["apple", 1, True, 3.14]
+print(mylist)  
+
+#list operations like slicing, indexing, etc. are similar to strings.
+
+#slicing; time complexity O(k) where k is number of elements in the slice
+print(mylist[1:3]) #Output: ['1', 'True']
+
+#indexing
+print(mylist[0]) #Output: apple
+
+#negative indexing; time complexity O(1)
+print(mylist[-1]) #Output: 3.14
+#looping
+for item in mylist:
+    print(item)      
+
+#Check if Item Exists; time complexity O(n)
+if "apple" in mylist:
+    print("Yes, 'apple' is in the list")        
+
+#Change Item Value; time complexity O(1)
+mylist[1] = "blackcurrant"       
+print(mylist)
+
+#Insert Items - O(n)
+mylist.insert(2, "watermelon") #Inserts "watermelon" at index
+
+print(mylist)
+
+#Add Items
+mylist.append("orange") #Adds "orange" at the end of the list, and takes only one argument, but we can append another list as an item. Matter of fact adds any one object.
+print(mylist)
+mylist.extend(["mango", "grapes"]) #Adds multiple items to the end of the list, even though we are adding a list, it adds each item individually
+print(mylist)
+#You can also use the list() constructor to make a list.
+thislist = list(("apple", "banana", "cherry")) #Note the double round-brackets
+print(thislist)
+#Remove Items
+mylist.remove("banana") #Removes first occurance of "banana" from the list
+print(mylist)
+mylist.pop() #Removes the last item from the list, if we pass index inside (), it removes the item at that index
+print(mylist)
+mylist.pop(1) #Removes the item at index 1
+print(mylist)
+del mylist[0] #Removes the item at index 0
+print(mylist)
+del mylist #Deletes the entire list, erases the variable completely from memory
+#print(mylist) #This will raise an error because the list no longer exists.
+mylist = ["apple", "banana", "cherry", "orange"]
+mylist.clear() #Empties the list 
+print(mylist)
+print("\n") #New Line
+
+# List comprehensions
+# List comprehensions provide a concise way to create lists.
+# syntax: [expression for item in iterable if condition]
+
+# Example: Create a list of squares
+squares = [x**2 for x in range(10)]
+print(squares)
+
+# Example: Filter even numbers from a list
+numbers = [1, 2, 3, 4, 5, 6]
+evens = [num for num in numbers if num % 2 == 0]
+
+#flatten a nested list
+matrix = [[1, 2], [3, 4], [5, 6]]
+flat = [item for row in matrix for item in row]  # [1, 2, 3, 4, 5, 6]
+
+# multiple conditions
+filtered = [x for x in range(20) if x % 2 == 0 if x % 3 == 0]  # [0, 6, 12, 18]
+print(filtered)
+
+#Cartesian Product with Filtering: 
+pairs = [(x, y) for x in range(3) for y in range(3) if x != y]
+
+# Advanced Example: Conditional Expressions
+nums = [1, 2, 3, 4, 5]
+result = ['even' if n % 2 == 0 else 'odd' for n in nums]  # ['odd', 'even', 'odd', 'even', 'odd']
+print(result)
+
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort(key = str.lower)
+print(thislist)
+
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort(key = str.lower)
+print(thislist)
+
+def myfunc(n):
+  return abs(n - 50)
+
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(key = myfunc)
+print(thislist)
+
+
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.reverse()
+print(thislist)
+
+
+
+
+"""
+Dictionary in  Python
+Dictionaries are used to store data values in key:value pairs. 
+"""
+
+c = list({'baka':1, 'baka2': 2 })
+c
+['baka', 'baka2']
+c = list({'baka':1, 'baka2': 2 }.values())
+c
+[1, 2]
+c = list({'baka':1, 'baka2': 2 }.keys())  
+c
+['baka', 'baka2']
+c = list({'baka':1, 'baka2': 2 }.items())
+c
+[('baka', 1), ('baka2', 2)]
