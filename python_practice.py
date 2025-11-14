@@ -341,6 +341,14 @@ print(txt)
 
 #Examples in Python conversions between number systems
 
+a = "1010"   # binary for 10
+b = "0011"   # binary for 3
+
+# Convert to integers, add, then convert back to binary
+sum_binary = bin(int(a, 2) + int(b, 2))[2:] #to remove 0b prefix
+
+print(sum_binary)  # Output: "1101"
+
 #Convert octal to decimal
 octal_str = '377'
 decimal = int(octal_str, 8)
