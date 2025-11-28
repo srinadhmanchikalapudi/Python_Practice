@@ -326,6 +326,10 @@ print(txt)
 #ASCII value for 'A' is 65
 print(ord('A')) #ord() function returns the ASCII value of a character
 
+# Convert integer 65 to ASCII
+ascii_char = chr(65)
+print(ascii_char)  # Output: A
+
 #Binary format - 00000101 is calculated by 2 powers - 2^2(3rd position from right) + 2^0(1st position from right) = 4 + 1 = 5.
 
 txt = f"The binary version of 5 is {5 :b}" #Binary format
@@ -1096,3 +1100,21 @@ print("\n") #New Line
 #values()	Returns a list of all the values in the dictionary
 
 
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_to_integer = {'I': 1,
+                            'V': 5,
+                            'X': 10,
+                            'L': 50,
+                            'C': 100,
+                            'D': 500,
+                            'M': 1000}
+
+        s = s.replace('IV', 'IIII') \
+             .replace('IX', 'VIIII') \
+             .replace('XL', 'XXXX') \
+             .replace('XC', 'LXXXX') \
+             .replace('CD', 'CCCC') \
+             .replace('CM', 'DCCCC')
+        
+        return sum(map(roman_to_integer.get, s))
