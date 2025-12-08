@@ -1100,21 +1100,213 @@ print("\n") #New Line
 #values()	Returns a list of all the values in the dictionary
 
 
-class Solution:
-    def romanToInt(self, s: str) -> int:
-        roman_to_integer = {'I': 1,
-                            'V': 5,
-                            'X': 10,
-                            'L': 50,
-                            'C': 100,
-                            'D': 500,
-                            'M': 1000}
+#Tuples in Python
+#A tuple is a collection which is ordered and unchangeable. In Python tuples are written with round brackets.
+#Tuples are used to store multiple items in a single variable.
+thistuple = ("apple", "banana", "cherry")
+print(thistuple)
+print(len(thistuple)) #Print the number of items in the tuple
+print(type(thistuple)) #Print the data type of the tuple
+#Tuple items are ordered, unchangeable, and allow duplicate values.
+#Tuple items are indexed, the first item has index [0], the second item has index
+#[1] etc.
+#Tuples allow duplicate values:
+thistuple = ("apple", "banana", "cherry", "apple", "cherry")
+print(thistuple)
+#Tuple items can be of any data type:
+tuple1 = ("apple", "banana", "cherry") #String
+tuple2 = (1, 5, 7, 9, 3) #Integer
+tuple3 = (True, False, False) #Boolean
+tuple4 = ("abc", 34, True, 40.6) #Mixed
+print(tuple1)
+print(tuple2)
+print(tuple3)
+print(tuple4)
+#You can also use the tuple() constructor to make a tuple.
+thistuple = tuple(("apple", "banana", "cherry")) #Note the double round-brackets
+print(thistuple)
+#Access Tuple Items
+print(thistuple[1]) #Indexing
+print(thistuple[-1]) #Negative Indexing
+for item in thistuple: #Looping
+    print(item)
+if "apple" in thistuple: #Check if Item Exists
+    print("Yes, 'apple' is in the tuple")
 
-        s = s.replace('IV', 'IIII') \
-             .replace('IX', 'VIIII') \
-             .replace('XL', 'XXXX') \
-             .replace('XC', 'LXXXX') \
-             .replace('CD', 'CCCC') \
-             .replace('CM', 'DCCCC')
-        
-        return sum(map(roman_to_integer.get, s))
+#Tuples are unchangeable, meaning that you cannot change, add, or remove items after the tuple has been created.
+#But there are workarounds, such as converting the tuple into a list, making the
+#change, and converting the list back into a tuple.
+#Convert the tuple into a list to be able to change it
+y = list(thistuple)
+y.append("orange")
+thistuple = tuple(y)
+print(thistuple)
+#Unpacking a tuple
+fruits = ("apple", "banana", "cherry")
+(green, yellow, red) = fruits
+print(green)
+print(yellow)
+print(red)
+#Using Asterisk*
+fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
+(green, yellow, *red) = fruits
+print(green)
+print(yellow)
+print(red)
+#Tuple Methods
+#Python has two built-in methods that you can use on tuples.
+#Method	Description
+#count()	Returns the number of times a specified value occurs in a tuple
+#index()	Searches the tuple for a specified value and returns the position of where it was
+print(thistuple.count("cherry")) #count() method
+print(thistuple.index("banana")) #index() method
+
+
+
+#Sets in Python
+#A set is a collection which is unordered , is changable/mutable and unindexed. In Python sets are written with curly brackets.
+#Sets are used to store multiple items in a single variable.
+#Set items are unordered, and do not allow duplicate values and is mutable.
+#Set items can be of any data type
+thisset = {"apple", "banana", "cherry"}
+print(thisset)
+
+#Set items are unchangeable, but you can remove items and add new items.
+thisset.add("orange")
+print(thisset)
+thisset.remove("banana")
+print(thisset)
+
+#Note: Sets are unordered, so you cannot be sure in which order the items will appear.
+#Set items are unindexed, meaning that you cannot access items in a set by referring to an index or a key.
+for item in thisset:
+    print(item)
+#Check if "apple" is present in the set
+print("apple" in thisset)
+
+"""
+Check if "banana" is present in the set:
+
+thisset = {"apple", "banana", "cherry"}
+
+print("banana" in thisset)
+
+Add Any Iterable
+The object in the update() method does not have to be a set, it can be any iterable object (tuples, lists, dictionaries etc.).
+
+thisset = {"apple", "banana", "cherry"}
+mylist = ["kiwi", "orange"]
+
+thisset.update(mylist)
+
+print(thisset)
+
+
+"""
+
+#Note: The values True and 1 are considered the same value in sets, and are treated as duplicates.
+#As are False and 0.
+#It is also possible to use the set() constructor to make a set.
+thisset = set(("apple", "banana", "cherry")) #Note the double round-brackets
+print(thisset)
+
+
+#Python Set Methods
+#Python has a set of built-in methods that you can use on sets.
+#Method	Description
+#add()	Adds an element to the set
+#clear()	Removes all the elements from the set
+#copy()	Returns a copy of the set
+#difference()	Returns a set containing the difference between two or more sets
+#difference_update()	Removes the items in this set that are also included in another, specified set
+#discard()	Removes the specified item. it will not raise an error if the item does not exist
+#intersection()	Returns a set, that is the intersection of two other sets
+#intersection_update()	Removes the items in this set that are not present in other, specified set(s)
+#isdisjoint()	Returns True if two sets have a null intersection
+#issubset()	Returns True if another set contains this set
+#issuperset()	Returns True if this set contains another set
+#pop()	Removes an element from the set randomly
+#remove()	Removes the specified element and raises an error if the element does not exist
+#symmetric_difference()	method keeps all items EXCEPT the duplicates into a new element. removes same items from both sets and returns the rest of 2 sets. doesnot update this set with the result
+#symmetric_difference_update()	method keeps all items EXCEPT the duplicates in this set. updates this set with the result
+#union()	Return a set containing the union of sets and gives a new set as an output
+#update()	Update the set with the union of this set and others and updates this set. will this property make a set mutable 
+
+print(thisset.union({"mango", "grape"})) #union() method
+
+"""
+Python frozenset
+frozenset is an immutable version of a set.
+
+Like sets, it contains unique, unordered, unchangeable elements.
+
+Unlike sets, elements cannot be added or removed from a frozenset.
+
+Creating a frozenset
+Use the frozenset() constructor to create a frozenset from any iterable.
+thisfrozenset = frozenset(("apple", "banana", "cherry"))
+print(thisfrozenset)
+print(type(thisfrozenset)) #Print the data type of the frozenset
+
+Method	Shortcut	Description
+copy()	 	Returns a shallow copy	
+difference()	-	Returns a new frozenset with the difference	
+intersection()	&	Returns a new frozenset with the intersection	
+isdisjoint()	 	Returns whether two frozensets have an intersection	
+issubset()	<= / <	Returns True if this frozenset is a (proper) subset of another	
+issuperset()	>= / >	Returns True if this frozenset is a (proper) superset of another	
+symmetric_difference()	^	Returns a new frozenset with the symmetric differences	
+union()	|	Returns a new frozenset containing the union
+"""
+
+"""
+If Statements in Python
+
+The Elif Keyword
+The elif keyword is Python's way of saying "if the previous conditions were not true, then try this condition".
+
+The elif keyword allows you to check multiple expressions for True and execute a block of code as soon as one of the conditions evaluates to True.
+
+Short Hand If
+If you have only one statement to execute, you can put it on the same line as the if statement.
+
+a = 5
+b = 2
+if a > b: print("a is greater than b")
+
+Short Hand If ... Else
+If you have one statement for if and one for else, you can put them on the same line using a conditional expression:
+
+Example
+One-line if/else that prints a value:
+
+a = 2
+b = 330
+print("A") if a > b else print("B")
+
+Assign a Value With If ... Else
+You can also use a one-line if/else to choose a value and assign it to a variable:
+
+Example
+a = 10
+b = 20
+bigger = a if a > b else b
+print("Bigger is", bigger)
+
+The syntax follows this pattern:
+
+variable = value_if_true if condition else value_if_false
+
+Multiple Conditions on One Line
+You can chain conditional expressions, but keep it short so it stays readable:
+
+Example
+One line, three outcomes:
+
+a = 330
+b = 330
+print("A") if a > b else print("=") if a == b else print("B")
+
+
+
+"""
